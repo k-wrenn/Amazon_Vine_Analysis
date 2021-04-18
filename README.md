@@ -13,27 +13,32 @@ Next, PySpark was used to determine if there was any bias towards favorable revi
 - Python- PySpark
 - Google Colaboratory
 - Jupyter Notebook
-- pgAdmin
+- pgAdmin 4
 - Data- [Amazon Video Game Dataset](https://s3.amazonaws.com/amazon-reviews-pds/tsv/amazon_reviews_us_Video_Games_v1_00.tsv.gz)
 
 ## Analysis
-First, and AWS RDS database was created with tables in pgAdmin. I chose to use the videogame dataset for this analysis.
+First, an AWS RDS database was created with tables in pgAdmin. I chose to use the videogame dataset for this analysis.
 
 The sataset was first extracted into a DataFrame. From there, it was transformed into four separate DataFrames that match the table schema in pgAdmin, which can be viewed [here](https://github.com/k-wrenn/Amazon_Vine_Analysis/blob/master/challenge_schema.sql). The transformed data was upoaded into the appropriate tables and queries were run in pgAdmin to confirm.
 
 The first dataframe created was the
 one which held all the data within the dataset. This included 15 sparate columns
 
-Next, a dataframe was created that matched each of the table schema in pgAdmin.
+Next, a different dataframe was created that matched each of the table schema in pgAdmin.
 
 The first dataframe created was the customers_df dataframe. This dataframe included two colums, customer_id and customer_count. ![customer_colab](Images/customer_colab.PNG)
 
 Then a products_df dataframe was created using product_id and product_title as columns. Duplicates product_id were dropped using **.drop_duplicates(["product_id"])** 
+
 ![product_colab](Images/product_colab.PNG)
 
-A review_id_df dataframe was created. For this dataframe, review_id, customer_id, product_id, product_parent, and review_date were used for columns. ![review_colab](Images/review_colab.PNG)
+A review_id_df dataframe was created. For this dataframe, review_id, customer_id, product_id, product_parent, and review_date were used for columns. 
 
-Lastly, a vine_df dataframe was made using review_id, star_rating, helpful_votes, total_votes, vine, and verified purchase as column headers. ![vine_colab](Images/vine_colab.PNG)
+![review_colab](Images/review_colab.PNG)
+
+Lastly, a vine_df dataframe was made using review_id, star_rating, helpful_votes, total_votes, vine, and verified purchase as column headers. 
+
+![vine_colab](Images/vine_colab.PNG)
 
 This last dataframe will be the one we use for our analysis to determine if having a paid Vine review makes a difference in the percentage of 5-star reviews.
 
@@ -47,7 +52,7 @@ That dataframe was further filtered down to retrieve all rows where the number o
 
 The second dataframe was then filtered to retrieve all the rows where the review was written as a part of the Vine program. Another dataframe was also created to retrieve rows that were not a part of the Vine program.
 
-Images of the filtered data can be found [here]()
+Images of the filtered data can be found [here](https://github.com/k-wrenn/Amazon_Vine_Analysis/tree/master/Images/Filtered_df)
 
 ## Results
 
@@ -65,4 +70,4 @@ The above numbers show the Vine system makes up a small amount of the total numb
 
 It seems that the Vine system has a positive bias towards 5-star reviews of video games. Due to the much larger number of non-vine reviews versus Vine reviews, a stastical analysis, suchas a t-test, could be done to analyze a null hypothesis of "the mean rating (in number of stars) of Vine reviews is the same as the mean rating (in number of stars) of non-vine reviews."
 
-The calculated p-value would determine whether or not there is sufficient evidence to reject the aforementioned null hypothesis which would, in turn, determine if the means are statistically similiar and if there is in fact bias towards favorable ratings from Vine users.
+The calculated p-value would determine whether or not there is sufficient evidence to reject the aforementioned null hypothesis which would, in turn, determine if the means are statistically similiar or if there is in fact bias towards favorable ratings from Vine users.
