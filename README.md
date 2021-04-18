@@ -26,7 +26,9 @@ one which held all the data within the dataset. This included 15 sparate columns
 
 Next, a different dataframe was created that matched each of the table schema in pgAdmin.
 
-The first dataframe created was the customers_df dataframe. This dataframe included two colums, customer_id and customer_count. ![customer_colab](Images/customer_colab.PNG)
+The first dataframe created was the customers_df dataframe. This dataframe included two colums, customer_id and customer_count. 
+
+![customer_colab](Images/customer_colab.PNG)
 
 Then a products_df dataframe was created using product_id and product_title as columns. Duplicates product_id were dropped using **.drop_duplicates(["product_id"])** 
 
